@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Objects;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
@@ -48,8 +49,8 @@ public class Board extends JPanel {
 
         for (int i = 0; i < NUM_IMAGES; i++) {
 			img[i] =
-                    (new ImageIcon(getClass().getClassLoader().getResource((i)
-            			    + ".gif"))).getImage();
+                    (new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource((i)
+                            + ".gif")))).getImage();
         }
 
         setDoubleBuffered(true);
