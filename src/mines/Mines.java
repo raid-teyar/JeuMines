@@ -1,6 +1,7 @@
 package mines;
 
 import java.awt.BorderLayout;
+import java.security.NoSuchAlgorithmException;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -15,7 +16,7 @@ public class Mines extends JFrame {
 
     private JLabel statusbar;
     
-    public Mines() {
+    public Mines() throws NoSuchAlgorithmException {
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(WIDTH, HEIGHT);
@@ -31,7 +32,7 @@ public class Mines extends JFrame {
         setVisible(true);
     }
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NoSuchAlgorithmException {
         new Mines();
     }
 }

@@ -4,6 +4,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.Objects;
 import java.util.Random;
 
@@ -41,7 +43,7 @@ public class Board extends JPanel {
     private JLabel statusbar;
 
 
-    public Board(JLabel statusbar) {
+    public Board(JLabel statusbar) throws NoSuchAlgorithmException {
 
         this.statusbar = statusbar;
 
@@ -60,16 +62,16 @@ public class Board extends JPanel {
     }
 
 
-    public void newGame() {
+    public void newGame() throws NoSuchAlgorithmException {
 
-        Random random;
+        Random random = SecureRandom.getInstanceStrong();
         int current_col;
 
         int i = 0;
         int position = 0;
         int cell = 0;
 
-        random = new Random();
+
         inGame = true;
         mines_left = mines;
 
@@ -276,7 +278,11 @@ public class Board extends JPanel {
 
 
             if (!inGame) {
-                newGame();
+                try {
+                    newGame();
+                } catch (NoSuchAlgorithmException ex) {
+                    throw new RuntimeException(ex);
+                }
                 repaint();
             }
 
