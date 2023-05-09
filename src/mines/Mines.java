@@ -9,13 +9,13 @@ import javax.swing.JLabel;
 // Source: http://zetcode.com/tutorials/javagamestutorial/minesweeper/
 
 public class Mines extends JFrame {
-	private static final long serialVersionUID = 4772165125287256837L;
-	
-	static private final int WIDTH = 250;
-    static private final int HEIGHT = 290;
+    private static final long serialVersionUID = 4772165125287256837L;
+
+    private static final int WIDTH = 250;
+    private static final int HEIGHT = 290;
 
     private JLabel statusbar;
-    
+
     public Mines() throws NoSuchAlgorithmException {
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -31,7 +31,7 @@ public class Mines extends JFrame {
         setResizable(false);
         setVisible(true);
     }
-    
+
     public static void main(String[] args) throws NoSuchAlgorithmException {
         new Mines();
     }

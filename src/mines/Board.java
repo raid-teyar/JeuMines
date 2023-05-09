@@ -1,5 +1,8 @@
 package mines;
 
+import com.google.gson.annotations.SerializedName;
+import kotlin.jvm.Transient;
+
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
@@ -15,27 +18,24 @@ import javax.swing.JPanel;
 
 
 public class Board extends JPanel {
-	private static final long serialVersionUID = 6195235521361212179L;
-	
-	static private final int NUM_IMAGES = 13;
-    static private final int CELL_SIZE = 15;
-
-    static private final int COVER_FOR_CELL = 10;
-    static private final int MARK_FOR_CELL = 10;
-    static private final int EMPTY_CELL = 0;
-    static private final int MINE_CELL = 9;
-    static private final int COVERED_MINE_CELL = MINE_CELL + COVER_FOR_CELL;
-    static private final int MARKED_MINE_CELL = COVERED_MINE_CELL + MARK_FOR_CELL;
-
-    static private final int DRAW_MINE = 9;
-    static private final int DRAW_COVER = 10;
-    static private final int DRAW_MARK = 11;
-    static private final int DRAW_WRONG_MARK = 12;
+    private static final long serialVersionUID = 6195235521361212179L;
+    private static final int NUM_IMAGES = 13;
+    private static final int CELL_SIZE = 15;
+    private static final int COVER_FOR_CELL = 10;
+    private static final int MARK_FOR_CELL = 10;
+    private static final int EMPTY_CELL = 0;
+    private static final int MINE_CELL = 9;
+    private static final int COVERED_MINE_CELL = MINE_CELL + COVER_FOR_CELL;
+    private static final int MARKED_MINE_CELL = COVERED_MINE_CELL + MARK_FOR_CELL;
+    private static final int DRAW_MINE = 9;
+    private static final int DRAW_COVER = 10;
+    private static final int DRAW_MARK = 11;
+    private static final int DRAW_WRONG_MARK = 12;
 
     private int[] field;
     private boolean inGame;
     private int minesLeft;
-    private Image[] img;
+    private transient Image[] img;
     private int mines = 40;
     private int rows = 16;
     private int cols = 16;
@@ -50,7 +50,7 @@ public class Board extends JPanel {
         img = new Image[NUM_IMAGES];
 
         for (int i = 0; i < NUM_IMAGES; i++) {
-			img[i] =
+            img[i] =
                     (new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource((i)
                             + ".gif")))).getImage();
         }
@@ -77,7 +77,7 @@ public class Board extends JPanel {
 
         allCells = rows * cols;
         field = new int[allCells];
-        
+
         for (i = 0; i < allCells; i++)
             field[i] = COVER_FOR_CELL;
 
@@ -90,7 +90,7 @@ public class Board extends JPanel {
             position = (int) (allCells * random.nextDouble());
 
             if ((position < allCells) &&
-                (field[position] != COVERED_MINE_CELL)) {
+                    (field[position] != COVERED_MINE_CELL)) {
 
 
                 currentCol = position % cols;
@@ -228,7 +228,7 @@ public class Board extends JPanel {
                 }
 
                 g.drawImage(img[cell], (j * CELL_SIZE),
-                    (i * CELL_SIZE), this);
+                        (i * CELL_SIZE), this);
             }
         }
 
@@ -292,7 +292,7 @@ public class Board extends JPanel {
                     }
 
                     if ((field[(cRow * cols) + cCol] > MINE_CELL) &&
-                        (field[(cRow * cols) + cCol] < MARKED_MINE_CELL)) {
+                            (field[(cRow * cols) + cCol] < MARKED_MINE_CELL)) {
 
                         field[(cRow * cols) + cCol] -= COVER_FOR_CELL;
                         rep = true;
