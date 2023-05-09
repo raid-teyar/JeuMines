@@ -75,7 +75,7 @@ public class Board extends JPanel {
         statusbar.setText(Integer.toString(minesLeft));
 
         while (i < mines) {
-            position = (int) (allCells * random.nextDouble());
+            position = random.nextInt(allCells);
             if (field[position] != COVERED_MINE_CELL) {
                 field[position] = COVERED_MINE_CELL;
                 i++;

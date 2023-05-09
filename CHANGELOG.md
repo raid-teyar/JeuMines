@@ -36,3 +36,8 @@ significantly reduced from 49 to 15, making it easier to understand and maintain
 smaller, more manageable parts, and the logic for finding adjacent cells has been moved to a separate method.
 Additionally, the `Arrays.fill` method has been used to initialize the `field` array with `COVER_FOR_CELL` values, rather
 than using a for loop. Overall, these changes should make the code more readable and easier to modify in the future.
+- Replaced `random.nextDouble()` with `random.nextInt()`
+    Impact: `meduim`  
+    **Improved Performance**: The `nextInt()` method is faster than `nextDouble()` because it does not have to convert the
+    result to a double value. This change should improve the performance of the game.
+
