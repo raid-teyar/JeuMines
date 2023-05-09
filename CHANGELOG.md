@@ -19,3 +19,7 @@ cheaters.
 Impact: `low`  
   **Improved Performance**: By making the variable static, there will only be one copy of the variable that is shared 
 across all instances of the class, which can save memory and reduce the overhead of creating and managing new objects.
+- Changed local variables and methods names to match the Java naming conventions camelCase  
+Impact: `low`  
+  **Improved code readability**: By following the Java naming conventions, the code becomes more readable and easier
+    to understand.

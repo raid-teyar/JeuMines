@@ -21,7 +21,7 @@ public class BoardTest {
     }
 
     @Test
-    void find_empty_cells() {
+    void findEmptyCells() {
     }
 
     @Test
