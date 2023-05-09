@@ -44,5 +44,11 @@ than using a for loop. Overall, these changes should make the code more readable
     Impact: `low`  
     **Improved code readability**: The `@Override` annotation makes it clear that the method is overriding a superclass
     method or implementing an interface method. This makes the code easier to understand and maintain.
+- Replaced standard console output with `Logger` class
+    Impact: `low`  
+    **Improved code readability**: The `Logger` class provides a more flexible and powerful way to log messages than
+    standard console output. It allows you to specify the level of the message, which makes it easier to filter out
+    messages that are not relevant to the current task. It also allows you to specify the source of the message, which
+    makes it easier to identify where the message came from.
 
 

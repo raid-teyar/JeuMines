@@ -9,6 +9,8 @@ import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -235,7 +237,7 @@ public class Board extends JPanel {
                 try {
                     newGame();
                 } catch (NoSuchAlgorithmException ex) {
-                    System.out.println(ex.getMessage());
+                    Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 repaint();
             }
