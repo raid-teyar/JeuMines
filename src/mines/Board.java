@@ -17,20 +17,20 @@ import javax.swing.JPanel;
 public class Board extends JPanel {
 	private static final long serialVersionUID = 6195235521361212179L;
 	
-	private final int NUM_IMAGES = 13;
-    private final int CELL_SIZE = 15;
+	static private final int NUM_IMAGES = 13;
+    static private final int CELL_SIZE = 15;
 
-    private final int COVER_FOR_CELL = 10;
-    private final int MARK_FOR_CELL = 10;
-    private final int EMPTY_CELL = 0;
-    private final int MINE_CELL = 9;
-    private final int COVERED_MINE_CELL = MINE_CELL + COVER_FOR_CELL;
-    private final int MARKED_MINE_CELL = COVERED_MINE_CELL + MARK_FOR_CELL;
+    static private final int COVER_FOR_CELL = 10;
+    static private final int MARK_FOR_CELL = 10;
+    static private final int EMPTY_CELL = 0;
+    static private final int MINE_CELL = 9;
+    static private final int COVERED_MINE_CELL = MINE_CELL + COVER_FOR_CELL;
+    static private final int MARKED_MINE_CELL = COVERED_MINE_CELL + MARK_FOR_CELL;
 
-    private final int DRAW_MINE = 9;
-    private final int DRAW_COVER = 10;
-    private final int DRAW_MARK = 11;
-    private final int DRAW_WRONG_MARK = 12;
+    static private final int DRAW_MINE = 9;
+    static private final int DRAW_COVER = 10;
+    static private final int DRAW_MARK = 11;
+    static private final int DRAW_WRONG_MARK = 12;
 
     private int[] field;
     private boolean inGame;
@@ -99,42 +99,26 @@ public class Board extends JPanel {
 
                 if (current_col > 0) { 
                     cell = position - 1 - cols;
-                    if (cell >= 0)
-                        if (field[cell] != COVERED_MINE_CELL)
-                            field[cell] += 1;
+                    if (cell >= 0 && field[cell] != COVERED_MINE_CELL) field[cell] += 1;
                     cell = position - 1;
-                    if (cell >= 0)
-                        if (field[cell] != COVERED_MINE_CELL)
-                            field[cell] += 1;
+                    if (cell >= 0 && field[cell] != COVERED_MINE_CELL) field[cell] += 1;
 
                     cell = position + cols - 1;
-                    if (cell < all_cells)
-                        if (field[cell] != COVERED_MINE_CELL)
-                            field[cell] += 1;
+                    if (cell < all_cells && field[cell] != COVERED_MINE_CELL) field[cell] += 1;
                 }
 
                 cell = position - cols;
-                if (cell >= 0)
-                    if (field[cell] != COVERED_MINE_CELL)
-                        field[cell] += 1;
+                if (cell >= 0 && field[cell] != COVERED_MINE_CELL) field[cell] += 1;
                 cell = position + cols;
-                if (cell < all_cells)
-                    if (field[cell] != COVERED_MINE_CELL)
-                        field[cell] += 1;
+                if (cell < all_cells && field[cell] != COVERED_MINE_CELL) field[cell] += 1;
 
                 if (current_col < (cols - 1)) {
                     cell = position - cols + 1;
-                    if (cell >= 0)
-                        if (field[cell] != COVERED_MINE_CELL)
-                            field[cell] += 1;
+                    if (cell >= 0 && field[cell] != COVERED_MINE_CELL) field[cell] += 1;
                     cell = position + cols + 1;
-                    if (cell < all_cells)
-                        if (field[cell] != COVERED_MINE_CELL)
-                            field[cell] += 1;
+                    if (cell < all_cells && field[cell] != COVERED_MINE_CELL) field[cell] += 1;
                     cell = position + 1;
-                    if (cell < all_cells)
-                        if (field[cell] != COVERED_MINE_CELL)
-                            field[cell] += 1;
+                    if (cell < all_cells && field[cell] != COVERED_MINE_CELL) field[cell] += 1;
                 }
             }
         }
@@ -148,70 +132,62 @@ public class Board extends JPanel {
 
         if (current_col > 0) { 
             cell = j - cols - 1;
-            if (cell >= 0)
-                if (field[cell] > MINE_CELL) {
-                    field[cell] -= COVER_FOR_CELL;
-                    if (field[cell] == EMPTY_CELL)
-                        find_empty_cells(cell);
-                }
+            if (cell >= 0 && field[cell] > MINE_CELL) {
+                field[cell] -= COVER_FOR_CELL;
+                if (field[cell] == EMPTY_CELL)
+                    find_empty_cells(cell);
+            }
 
             cell = j - 1;
-            if (cell >= 0)
-                if (field[cell] > MINE_CELL) {
-                    field[cell] -= COVER_FOR_CELL;
-                    if (field[cell] == EMPTY_CELL)
-                        find_empty_cells(cell);
-                }
+            if (cell >= 0 && field[cell] > MINE_CELL) {
+                field[cell] -= COVER_FOR_CELL;
+                if (field[cell] == EMPTY_CELL)
+                    find_empty_cells(cell);
+            }
 
             cell = j + cols - 1;
-            if (cell < all_cells)
-                if (field[cell] > MINE_CELL) {
-                    field[cell] -= COVER_FOR_CELL;
-                    if (field[cell] == EMPTY_CELL)
-                        find_empty_cells(cell);
-                }
+            if (cell < all_cells && field[cell] > MINE_CELL) {
+                field[cell] -= COVER_FOR_CELL;
+                if (field[cell] == EMPTY_CELL)
+                    find_empty_cells(cell);
+            }
         }
 
         cell = j - cols;
-        if (cell >= 0)
-            if (field[cell] > MINE_CELL) {
-                field[cell] -= COVER_FOR_CELL;
-                if (field[cell] == EMPTY_CELL)
-                    find_empty_cells(cell);
-            }
+        if (cell >= 0 && field[cell] > MINE_CELL) {
+            field[cell] -= COVER_FOR_CELL;
+            if (field[cell] == EMPTY_CELL)
+                find_empty_cells(cell);
+        }
 
         cell = j + cols;
-        if (cell < all_cells)
-            if (field[cell] > MINE_CELL) {
-                field[cell] -= COVER_FOR_CELL;
-                if (field[cell] == EMPTY_CELL)
-                    find_empty_cells(cell);
-            }
+        if (cell < all_cells && field[cell] > MINE_CELL) {
+            field[cell] -= COVER_FOR_CELL;
+            if (field[cell] == EMPTY_CELL)
+                find_empty_cells(cell);
+        }
 
         if (current_col < (cols - 1)) {
             cell = j - cols + 1;
-            if (cell >= 0)
-                if (field[cell] > MINE_CELL) {
-                    field[cell] -= COVER_FOR_CELL;
-                    if (field[cell] == EMPTY_CELL)
-                        find_empty_cells(cell);
-                }
+            if (cell >= 0 && field[cell] > MINE_CELL) {
+                field[cell] -= COVER_FOR_CELL;
+                if (field[cell] == EMPTY_CELL)
+                    find_empty_cells(cell);
+            }
 
             cell = j + cols + 1;
-            if (cell < all_cells)
-                if (field[cell] > MINE_CELL) {
-                    field[cell] -= COVER_FOR_CELL;
-                    if (field[cell] == EMPTY_CELL)
-                        find_empty_cells(cell);
-                }
+            if (cell < all_cells && field[cell] > MINE_CELL) {
+                field[cell] -= COVER_FOR_CELL;
+                if (field[cell] == EMPTY_CELL)
+                    find_empty_cells(cell);
+            }
 
             cell = j + 1;
-            if (cell < all_cells)
-                if (field[cell] > MINE_CELL) {
-                    field[cell] -= COVER_FOR_CELL;
-                    if (field[cell] == EMPTY_CELL)
-                        find_empty_cells(cell);
-                }
+            if (cell < all_cells && field[cell] > MINE_CELL) {
+                field[cell] -= COVER_FOR_CELL;
+                if (field[cell] == EMPTY_CELL)
+                    find_empty_cells(cell);
+            }
         }
 
     }
@@ -281,7 +257,7 @@ public class Board extends JPanel {
                 try {
                     newGame();
                 } catch (NoSuchAlgorithmException ex) {
-                    throw new RuntimeException(ex);
+                    System.out.println(ex.getMessage());
                 }
                 repaint();
             }

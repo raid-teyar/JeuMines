@@ -1,10 +1,12 @@
 package test.mines;
 
-import org.junit.jupiter.api.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 
-class BoardTest {
+
+public class BoardTest {
 
     @BeforeEach
     void setUp() {
