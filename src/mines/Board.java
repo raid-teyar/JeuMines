@@ -9,6 +9,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.Random;
 
@@ -63,65 +64,43 @@ public class Board extends JPanel {
 
 
     public void newGame() throws NoSuchAlgorithmException {
-
         Random random = SecureRandom.getInstanceStrong();
-        int currentCol;
-
         int i = 0;
-        int position = 0;
-        int cell = 0;
-
-
+        int position;
         inGame = true;
         minesLeft = mines;
-
         allCells = rows * cols;
         field = new int[allCells];
-
-        for (i = 0; i < allCells; i++)
-            field[i] = COVER_FOR_CELL;
-
+        Arrays.fill(field, COVER_FOR_CELL);
         statusbar.setText(Integer.toString(minesLeft));
 
-
-        i = 0;
         while (i < mines) {
-
             position = (int) (allCells * random.nextDouble());
-
-            if ((position < allCells) &&
-                    (field[position] != COVERED_MINE_CELL)) {
-
-
-                currentCol = position % cols;
+            if (field[position] != COVERED_MINE_CELL) {
                 field[position] = COVERED_MINE_CELL;
                 i++;
-
-                if (currentCol > 0) {
-                    cell = position - 1 - cols;
-                    if (cell >= 0 && field[cell] != COVERED_MINE_CELL) field[cell] += 1;
-                    cell = position - 1;
-                    if (cell >= 0 && field[cell] != COVERED_MINE_CELL) field[cell] += 1;
-
-                    cell = position + cols - 1;
-                    if (cell < allCells && field[cell] != COVERED_MINE_CELL) field[cell] += 1;
-                }
-
-                cell = position - cols;
-                if (cell >= 0 && field[cell] != COVERED_MINE_CELL) field[cell] += 1;
-                cell = position + cols;
-                if (cell < allCells && field[cell] != COVERED_MINE_CELL) field[cell] += 1;
-
-                if (currentCol < (cols - 1)) {
-                    cell = position - cols + 1;
-                    if (cell >= 0 && field[cell] != COVERED_MINE_CELL) field[cell] += 1;
-                    cell = position + cols + 1;
-                    if (cell < allCells && field[cell] != COVERED_MINE_CELL) field[cell] += 1;
-                    cell = position + 1;
-                    if (cell < allCells && field[cell] != COVERED_MINE_CELL) field[cell] += 1;
+                for (int j : getAdjacentCells(position)) {
+                    if (j >= 0 && j < allCells && field[j] != COVERED_MINE_CELL) {
+                        field[j] += 1;
+                    }
                 }
             }
         }
+    }
+
+    private int[] getAdjacentCells(int position) {
+        int currentCol = position % cols;
+        int row = position / cols;
+        int[] adjacentCells = new int[8];
+        int count = 0;
+        for (int i = row - 1; i <= row + 1; i++) {
+            for (int j = currentCol - 1; j <= currentCol + 1; j++) {
+                if (i >= 0 && i < rows && j >= 0 && j < cols && !(i == row && j == currentCol)) {
+                    adjacentCells[count++] = i * cols + j;
+                }
+            }
+        }
+        return Arrays.copyOf(adjacentCells, count);
     }
 
 

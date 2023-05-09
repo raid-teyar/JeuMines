@@ -29,3 +29,10 @@ Impact: `low`
  will fail, and an exception will be thrown. Therefore, making the image field either serializable or transient will ensure that the entire
  object can be serialized without errors. which means now we can transfer the object between different JVMs, and we ensured
  that our class is compatible with other libraries.
+- Refactored the `newGame()` method to reduce the cognitive complexity.  
+ Impact: `low`  
+  **Improved code readability**: The impact of this refactoring is that the cognitive complexity of the method has been 
+significantly reduced from 49 to 15, making it easier to understand and maintain. The method has been broken down into
+smaller, more manageable parts, and the logic for finding adjacent cells has been moved to a separate method.
+Additionally, the `Arrays.fill` method has been used to initialize the `field` array with `COVER_FOR_CELL` values, rather
+than using a for loop. Overall, these changes should make the code more readable and easier to modify in the future.
