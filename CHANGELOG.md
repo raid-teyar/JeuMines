@@ -14,7 +14,7 @@ Random, you are less likely to generate predictable or reproducible random numbe
 cheaters.
 - Merged collapsible if statements.  
  Impact: `low`  
-  **Improved code readability**: Collapsing if statements makes the code more readable and easier to understand.
+  **Improved code readability and maintainability**: Collapsing if statements makes the code more readable and easier to understand.
 - Changed `private final` variables to `private static final`  
 Impact: `low`  
   **Improved Performance**: By making the variable static, there will only be one copy of the variable that is shared 
@@ -31,7 +31,7 @@ Impact: `low`
  that our class is compatible with other libraries.
 - Refactored the `newGame()` method to reduce the cognitive complexity.  
  Impact: `low`  
-  **Improved code readability**: The impact of this refactoring is that the cognitive complexity of the method has been 
+  **Improved code readability and maintainability**: The impact of this refactoring is that the cognitive complexity of the method has been 
 significantly reduced from 49 to 15, making it easier to understand and maintain. The method has been broken down into
 smaller, more manageable parts, and the logic for finding adjacent cells has been moved to a separate method.
 Additionally, the `Arrays.fill` method has been used to initialize the `field` array with `COVER_FOR_CELL` values, rather
@@ -40,4 +40,9 @@ than using a for loop. Overall, these changes should make the code more readable
     Impact: `meduim`  
     **Improved Performance**: The `nextInt()` method is faster than `nextDouble()` because it does not have to convert the
     result to a double value. This change should improve the performance of the game.
+- Added `@Override` to overriding and implementing methods
+    Impact: `low`  
+    **Improved code readability**: The `@Override` annotation makes it clear that the method is overriding a superclass
+    method or implementing an interface method. This makes the code easier to understand and maintain.
+
 

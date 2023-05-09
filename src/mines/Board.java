@@ -1,8 +1,5 @@
 package mines;
 
-import com.google.gson.annotations.SerializedName;
-import kotlin.jvm.Transient;
-
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
@@ -171,6 +168,7 @@ public class Board extends JPanel {
 
     }
 
+    @Override
     public void paint(Graphics g) {
 
         int cell = 0;
@@ -221,6 +219,7 @@ public class Board extends JPanel {
 
 
     class MinesAdapter extends MouseAdapter {
+        @Override
         public void mousePressed(MouseEvent e) {
 
             int x = e.getX();
