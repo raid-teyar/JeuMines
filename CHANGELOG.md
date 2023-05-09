@@ -30,7 +30,7 @@ Impact: `low`
  object can be serialized without errors. which means now we can transfer the object between different JVMs, and we ensured
  that our class is compatible with other libraries.
 - Refactored the `newGame()` method to reduce the cognitive complexity.  
- Impact: `low`  
+ Impact: `meduim`  
   **Improved code readability and maintainability**: The impact of this refactoring is that the cognitive complexity of the method has been 
 significantly reduced from 49 to 15, making it easier to understand and maintain. The method has been broken down into
 smaller, more manageable parts, and the logic for finding adjacent cells has been moved to a separate method.
@@ -44,11 +44,22 @@ than using a for loop. Overall, these changes should make the code more readable
     Impact: `low`  
     **Improved code readability**: The `@Override` annotation makes it clear that the method is overriding a superclass
     method or implementing an interface method. This makes the code easier to understand and maintain.
-- Replaced standard console output with `Logger` class
+- Replaced standard console output with `Logger` class  
+ 
     Impact: `low`  
     **Improved code readability**: The `Logger` class provides a more flexible and powerful way to log messages than
     standard console output. It allows you to specify the level of the message, which makes it easier to filter out
     messages that are not relevant to the current task. It also allows you to specify the source of the message, which
     makes it easier to identify where the message came from.
+- Refactored  `findEmptyCells()` method to reduce the cognitive complexity.   
+  This refactoring reduces the cognitive complexity of the findEmptyCells method by extracting the repeated code into
+  the checkCell helper method. The helper method takes care of checking if the cell is within bounds, if it is not a mine
+  cell, and if it is an empty cell. If these conditions are met, it marks the cell as uncovered and recursively calls
+  findEmptyCells for the current cell.  
+ Impact: `meduim`  
+  **Improved code readability and maintainability**: The impact of this refactoring is that the findEmptyCells method 
+is now easier to read and understand, which makes it less error-prone and easier to maintain. Additionally, the code 
+is now more modular, which makes it easier to modify and test. The extracted helper method can be reused in other parts
+of the codebase, which reduces code duplication and makes the code more maintainable.
 
 

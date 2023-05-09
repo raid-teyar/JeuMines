@@ -104,70 +104,31 @@ public class Board extends JPanel {
 
 
     public void findEmptyCells(int j) {
-
         int currentCol = j % cols;
-        int cell;
 
         if (currentCol > 0) {
-            cell = j - cols - 1;
-            if (cell >= 0 && field[cell] > MINE_CELL) {
-                field[cell] -= COVER_FOR_CELL;
-                if (field[cell] == EMPTY_CELL)
-                    findEmptyCells(cell);
-            }
-
-            cell = j - 1;
-            if (cell >= 0 && field[cell] > MINE_CELL) {
-                field[cell] -= COVER_FOR_CELL;
-                if (field[cell] == EMPTY_CELL)
-                    findEmptyCells(cell);
-            }
-
-            cell = j + cols - 1;
-            if (cell < allCells && field[cell] > MINE_CELL) {
-                field[cell] -= COVER_FOR_CELL;
-                if (field[cell] == EMPTY_CELL)
-                    findEmptyCells(cell);
-            }
+            checkCell(j - cols - 1);
+            checkCell(j - 1);
+            checkCell(j + cols - 1);
         }
 
-        cell = j - cols;
-        if (cell >= 0 && field[cell] > MINE_CELL) {
-            field[cell] -= COVER_FOR_CELL;
-            if (field[cell] == EMPTY_CELL)
-                findEmptyCells(cell);
-        }
-
-        cell = j + cols;
-        if (cell < allCells && field[cell] > MINE_CELL) {
-            field[cell] -= COVER_FOR_CELL;
-            if (field[cell] == EMPTY_CELL)
-                findEmptyCells(cell);
-        }
+        checkCell(j - cols);
+        checkCell(j + cols);
 
         if (currentCol < (cols - 1)) {
-            cell = j - cols + 1;
-            if (cell >= 0 && field[cell] > MINE_CELL) {
-                field[cell] -= COVER_FOR_CELL;
-                if (field[cell] == EMPTY_CELL)
-                    findEmptyCells(cell);
-            }
+            checkCell(j - cols + 1);
+            checkCell(j + cols + 1);
+            checkCell(j + 1);
+        }
+    }
 
-            cell = j + cols + 1;
-            if (cell < allCells && field[cell] > MINE_CELL) {
-                field[cell] -= COVER_FOR_CELL;
-                if (field[cell] == EMPTY_CELL)
-                    findEmptyCells(cell);
-            }
-
-            cell = j + 1;
-            if (cell < allCells && field[cell] > MINE_CELL) {
-                field[cell] -= COVER_FOR_CELL;
-                if (field[cell] == EMPTY_CELL)
-                    findEmptyCells(cell);
+    private void checkCell(int cell) {
+        if (cell >= 0 && cell < allCells && field[cell] > MINE_CELL) {
+            field[cell] -= COVER_FOR_CELL;
+            if (field[cell] == EMPTY_CELL) {
+                findEmptyCells(cell);
             }
         }
-
     }
 
     @Override
