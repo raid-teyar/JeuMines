@@ -79,6 +79,10 @@ separate method.
     **Improved code readability and maintainability**: The impact of this refactoring is that the paint method is now 
 easier to read and understand, which makes it easier to maintain and modify in the future. By reducing the cognitive 
 complexity, it also reduces the risk of introducing bugs or errors during maintenance.
- 
+- Refactored `mousePressed()` method to reduce the cognitive complexity.
+  Impact `meduim`  
+    **Improved code readability and maintainability**: The impact of this refactoring is that the mousePressed method
+is now easier to read and understand, and it's now split into smaller, more focused methods that are easier to reason
+about. This makes it easier to maintain and update the code in the future.
 
 
