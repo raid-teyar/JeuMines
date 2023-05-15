@@ -19,7 +19,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
-
  The Board class represents a Minesweeper game board, which is a rectangular grid of cells containing mines or numbers.
  The class extends JPanel and displays the game board to the user. The game board is randomly generated at the start of a new game,
  and the user can click on cells to reveal them. The user wins the game by revealing all non-mine cells, and loses the game by revealing
