@@ -10,8 +10,8 @@ import javax.swing.*;
 public class Mines extends JFrame {
     private static final long serialVersionUID = 4772165125287256837L;
 
-    private static final int WIDTH = 250;
-    private static final int HEIGHT = 290;
+    private static final int WIDTH = 260;
+    private static final int HEIGHT = 300;
 
     private JLabel statusbar;
 
